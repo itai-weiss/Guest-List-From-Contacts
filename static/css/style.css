@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Frank+Ruhl+Libre:wght@300..900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
     --paper:        #ecede1;
@@ -22,7 +22,7 @@ html, body {
     padding: 0;
     background: var(--paper);
     color: var(--ink);
-    font-family: 'Fraunces', Georgia, serif;
+    font-family: 'Assistant', system-ui, sans-serif;
     font-variation-settings: "opsz" 18, "SOFT" 50;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -70,7 +70,7 @@ button { font-family: inherit; }
 }
 
 .app-hero .eyebrow {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.7rem;
     letter-spacing: 0.34em;
     text-transform: uppercase;
@@ -89,7 +89,7 @@ button { font-family: inherit; }
 }
 
 .app-hero h1 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Assistant', system-ui, sans-serif;
     font-variation-settings: "opsz" 144, "SOFT" 30;
     font-weight: 360;
     font-size: clamp(3rem, 7.5vw, 5.4rem);
@@ -106,7 +106,7 @@ button { font-family: inherit; }
 }
 
 .app-hero .lede {
-    font-family: 'Fraunces', serif;
+    font-family: 'Assistant', system-ui, sans-serif;
     font-variation-settings: "opsz" 24;
     font-size: 1.05rem;
     color: var(--ink-soft);
@@ -116,7 +116,7 @@ button { font-family: inherit; }
 }
 
 .app-hero .colophon {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.66rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -160,7 +160,7 @@ button { font-family: inherit; }
     margin: 3.5rem 0 1.75rem;
 }
 .section-label .num {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.68rem;
     letter-spacing: 0.28em;
     text-transform: uppercase;
@@ -168,7 +168,7 @@ button { font-family: inherit; }
     font-weight: 500;
 }
 .section-label .title {
-    font-family: 'Fraunces', serif;
+    font-family: 'Assistant', system-ui, sans-serif;
     font-variation-settings: "opsz" 60, "SOFT" 40;
     font-style: italic;
     font-size: 1.55rem;
@@ -196,7 +196,7 @@ button { font-family: inherit; }
 }
 
 .upload-tag {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.66rem;
     letter-spacing: 0.28em;
     text-transform: uppercase;
@@ -254,7 +254,7 @@ button { font-family: inherit; }
     border: none;
     border-radius: 999px;
     padding: 0.55rem 1.5rem;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.68rem;
     text-transform: uppercase;
     letter-spacing: 0.22em;
@@ -270,7 +270,7 @@ button { font-family: inherit; }
     background: var(--emerald-deep);
 }
 .file-meta {
-    font-family: 'Fraunces', serif;
+    font-family: 'Assistant', system-ui, sans-serif;
     font-variation-settings: "opsz" 24;
     color: var(--ink-soft);
     font-size: 0.95rem;
@@ -309,7 +309,7 @@ button { font-family: inherit; }
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.74rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -340,7 +340,7 @@ button { font-family: inherit; }
 
 .vcf-guide__lede {
     margin: 0 0 1.1rem;
-    font-family: 'Fraunces', serif;
+    font-family: 'Assistant', system-ui, sans-serif;
     font-variation-settings: "opsz" 24;
     color: var(--ink-soft);
     line-height: 1.55;
@@ -359,7 +359,7 @@ button { font-family: inherit; }
 }
 
 .vcf-card__platform {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.64rem;
     letter-spacing: 0.14em;
     color: var(--emerald);
@@ -369,7 +369,7 @@ button { font-family: inherit; }
 
 .vcf-card h3 {
     margin: 0 0 0.8rem;
-    font-family: 'Fraunces', serif;
+    font-family: 'Assistant', system-ui, sans-serif;
     font-variation-settings: "opsz" 48;
     font-size: 1.25rem;
     font-weight: 420;
@@ -411,7 +411,7 @@ button { font-family: inherit; }
     text-align: center;
 }
 .empty-state .mark {
-    font-family: 'Fraunces', serif;
+    font-family: 'Assistant', system-ui, sans-serif;
     font-variation-settings: "opsz" 144;
     font-weight: 300;
     font-size: 1.4rem;
@@ -421,7 +421,7 @@ button { font-family: inherit; }
     margin-bottom: 0.75rem;
 }
 .empty-state p {
-    font-family: 'Fraunces', serif;
+    font-family: 'Assistant', system-ui, sans-serif;
     font-variation-settings: "opsz" 24;
     font-style: italic;
     font-size: 1rem;
@@ -431,7 +431,7 @@ button { font-family: inherit; }
     line-height: 1.55;
 }
 .empty-state code {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.78rem;
     background: var(--paper-deep);
     padding: 0.06rem 0.4rem;
@@ -445,16 +445,20 @@ button { font-family: inherit; }
 .form-actions {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
     margin-top: 2rem;
 }
 
 .primary-action {
+    display: inline-block;
+    text-decoration: none;
     background: var(--emerald-deep);
     color: var(--paper-soft);
     border: 1px solid var(--emerald-deep);
     border-radius: 0;
     padding: 1.05rem 2.25rem;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 0.26em;
@@ -496,12 +500,12 @@ button { font-family: inherit; }
     display: flex;
     align-items: baseline;
     gap: 1rem;
-    font-family: 'Fraunces', serif;
+    font-family: 'Assistant', system-ui, sans-serif;
     font-style: italic;
     color: var(--ink-soft);
 }
 .alert-tag {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.62rem;
     letter-spacing: 0.24em;
     text-transform: uppercase;
@@ -521,7 +525,7 @@ button { font-family: inherit; }
     background: var(--paper-soft);
     border: 1px solid var(--rule);
     margin-top: 0;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.72rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -529,7 +533,7 @@ button { font-family: inherit; }
     flex-wrap: wrap;
 }
 .source-meta strong {
-    font-family: 'Fraunces', serif;
+    font-family: 'Assistant', system-ui, sans-serif;
     font-variation-settings: "opsz" 36;
     font-style: normal;
     font-weight: 500;
@@ -590,7 +594,7 @@ button { font-family: inherit; }
 .metric--unmatched { --metric-accent: var(--emerald); }
 
 .metric .metric-label {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.66rem;
     text-transform: uppercase;
     letter-spacing: 0.24em;
@@ -599,7 +603,7 @@ button { font-family: inherit; }
     margin-bottom: 0.6rem;
 }
 .metric .metric-value {
-    font-family: 'Fraunces', serif;
+    font-family: 'Assistant', system-ui, sans-serif;
     font-variation-settings: "opsz" 144, "SOFT" 0;
     font-weight: 320;
     font-size: 3.4rem;
@@ -616,7 +620,7 @@ button { font-family: inherit; }
     gap: 1.5rem;
     flex-wrap: wrap;
     margin: 1rem 0 1.25rem;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.66rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -646,7 +650,7 @@ button { font-family: inherit; }
 .ledger table {
     width: 100%;
     border-collapse: collapse;
-    font-family: 'Fraunces', serif;
+    font-family: 'Assistant', system-ui, sans-serif;
     font-variation-settings: "opsz" 18;
     font-size: 0.92rem;
     color: var(--ink);
@@ -654,7 +658,7 @@ button { font-family: inherit; }
 .ledger thead th {
     background: var(--paper-deep);
     border-bottom: 1px solid var(--ink);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.62rem;
     text-transform: uppercase;
     letter-spacing: 0.18em;
@@ -675,7 +679,7 @@ button { font-family: inherit; }
 .ledger tbody tr:hover { background: var(--paper-deep); }
 
 .ledger .col-status {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.62rem;
     text-transform: uppercase;
     letter-spacing: 0.16em;
@@ -687,7 +691,7 @@ button { font-family: inherit; }
 .ledger .status-unmatched { color: var(--emerald); }
 
 .ledger .col-name {
-    font-family: 'Frank Ruhl Libre', 'Fraunces', serif;
+    font-family: 'Frank Ruhl Libre', 'Assistant', system-ui, sans-serif;
     direction: rtl;
     text-align: right;
     font-size: 1rem;
@@ -695,25 +699,25 @@ button { font-family: inherit; }
     min-width: 10ch;
 }
 .ledger .col-contact {
-    font-family: 'Frank Ruhl Libre', 'Fraunces', serif;
+    font-family: 'Frank Ruhl Libre', 'Assistant', system-ui, sans-serif;
     direction: rtl;
     text-align: right;
     font-size: 0.95rem;
 }
 .ledger .col-confidence {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.78rem;
     color: var(--ink-soft);
     text-align: right;
     font-feature-settings: "tnum" 1, "lnum" 1;
 }
 .ledger .col-phone {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.82rem;
     white-space: nowrap;
 }
 .ledger .col-reason {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.7rem;
     color: var(--ink-muted);
     letter-spacing: 0.04em;
@@ -751,7 +755,7 @@ button { font-family: inherit; }
 }
 
 .review-card .review-meta {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.62rem;
     text-transform: uppercase;
     letter-spacing: 0.24em;
@@ -771,7 +775,7 @@ button { font-family: inherit; }
 }
 
 .review-card .guest-name {
-    font-family: 'Frank Ruhl Libre', 'Fraunces', serif;
+    font-family: 'Frank Ruhl Libre', 'Assistant', system-ui, sans-serif;
     font-weight: 500;
     font-size: 1.7rem;
     color: var(--ink);
@@ -783,7 +787,7 @@ button { font-family: inherit; }
 }
 
 .review-card .review-confidence {
-    font-family: 'Fraunces', serif;
+    font-family: 'Assistant', system-ui, sans-serif;
     font-variation-settings: "opsz" 144;
     font-weight: 320;
     font-size: 2.6rem;
@@ -794,7 +798,7 @@ button { font-family: inherit; }
 }
 .review-card .review-confidence small {
     display: block;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.55rem;
     letter-spacing: 0.28em;
     text-transform: uppercase;
@@ -804,7 +808,7 @@ button { font-family: inherit; }
 }
 
 .review-card.is-resolved .review-confidence {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.7rem;
     letter-spacing: 0.26em;
     text-transform: uppercase;
@@ -888,7 +892,7 @@ button { font-family: inherit; }
     display: flex;
     align-items: baseline;
     gap: 1rem;
-    font-family: 'Fraunces', serif;
+    font-family: 'Assistant', system-ui, sans-serif;
     font-variation-settings: "opsz" 24;
     font-size: 0.98rem;
     color: var(--ink);
@@ -901,7 +905,7 @@ button { font-family: inherit; }
     letter-spacing: 0.02em;
 }
 .review-option__name {
-    font-family: 'Frank Ruhl Libre', 'Fraunces', serif;
+    font-family: 'Frank Ruhl Libre', 'Assistant', system-ui, sans-serif;
     direction: rtl;
     flex: 1 1 auto;
     min-width: 0;
@@ -909,14 +913,14 @@ button { font-family: inherit; }
     font-size: 1.05rem;
 }
 .review-option__phone {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.78rem;
     color: var(--ink-soft);
     flex: 0 0 auto;
     white-space: nowrap;
 }
 .review-option__score {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.78rem;
     color: var(--ink-muted);
     font-feature-settings: "tnum" 1, "lnum" 1;
@@ -944,7 +948,7 @@ button { font-family: inherit; }
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
     font-size: 0.62rem;
     letter-spacing: 0.24em;
     text-transform: uppercase;
@@ -1027,6 +1031,7 @@ button { font-family: inherit; }
 [dir="rtl"] .upload-tag,
 [dir="rtl"] .file-button,
 [dir="rtl"] .primary-action,
+[dir="rtl"] .secondary-action,
 [dir="rtl"] .alert-tag,
 [dir="rtl"] .source-meta,
 [dir="rtl"] .metric .metric-label,
@@ -1065,4 +1070,47 @@ button { font-family: inherit; }
         padding-right: 0;
         text-align: right;
     }
+}
+.secondary-action {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    border-radius: 0;
+    padding: 1.05rem 2.25rem;
+    font-family: 'JetBrains Mono', 'Assistant', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.26em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 180ms ease;
+    text-decoration: none;
+    display: inline-block;
+}
+.secondary-action:hover {
+    background: var(--paper-deep);
+    border-color: var(--ink-muted);
+}
+.app-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+}
+.credits {
+    font-family: 'Assistant', system-ui, sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--ink);
+    padding-bottom: 1.5rem;
+    border-bottom: 1px dashed var(--rule-soft);
+    width: 100%;
+}
+.credits strong {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--emerald-deep);
+    display: block;
+    margin-bottom: 0.5rem;
 }

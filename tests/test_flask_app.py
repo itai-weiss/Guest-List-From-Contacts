@@ -68,7 +68,7 @@ def test_flask_upload_review_resolve_and_download_flow() -> None:
     assert 'dir="rtl"' in page
     assert "בחירת איש הקשר הנכון" in page
     assert "דורשים בדיקה" in page
-    assert "הורדת הקובץ" in page
+    assert "הורדת קובץ אקסל" in page
     assert "review-" in page
 
     marker = 'name="choice_key" value="'

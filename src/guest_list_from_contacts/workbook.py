@@ -11,7 +11,7 @@ from .models import GuestRow, MatchResult
 from .text import normalize_name
 
 
-NAME_COLUMN = "שם"
+NAME_COLUMNS = ["שם", "שם מלא", "שם מוזמן"]
 OUTPUT_COLUMNS = ["טלפון", "סטטוס התאמה", "איש קשר תואם", "ציון התאמה", "סיבת התאמה"]
 
 
@@ -30,11 +30,18 @@ def load_guest_workbook(
     for worksheet in spreadsheet.worksheets:
         raw_rows = list(worksheet.iter_rows(values_only=True))
         if not raw_rows:
-            raise ValueError(f"Sheet '{worksheet.title}' is missing the '{NAME_COLUMN}' column")
+            raise ValueError(f"Sheet '{worksheet.title}' is missing a name column (expected one of: {', '.join(NAME_COLUMNS)})")
 
         columns = [_stringify_header(value) for value in raw_rows[0]]
-        if NAME_COLUMN not in columns:
-            raise ValueError(f"Sheet '{sheet_name}' is missing the '{NAME_COLUMN}' column")
+        
+        name_col_found = None
+        for col in NAME_COLUMNS:
+            if col in columns:
+                name_col_found = col
+                break
+
+        if not name_col_found:
+            raise ValueError(f"Sheet '{worksheet.title}' is missing a name column (expected one of: {', '.join(NAME_COLUMNS)})")
 
         sheet_rows: list[dict[str, object]] = []
         for row_index, values in enumerate(raw_rows[1:]):
@@ -44,7 +51,7 @@ def load_guest_workbook(
             }
             sheet_rows.append(row)
 
-            raw_name = _stringify_name(row.get(NAME_COLUMN, ""))
+            raw_name = _stringify_name(row.get(name_col_found, ""))
             if not raw_name:
                 continue
             guest_rows.append(

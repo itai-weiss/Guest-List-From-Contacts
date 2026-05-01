@@ -24,13 +24,7 @@ Local app for filling guest phone numbers into a wedding guest workbook from a p
 
 ## Assumptions
 
-- Every sheet that should be processed contains a column named `שם`.
-- The app preserves the original sheet structure and appends these columns:
-	- `טלפון`
-	- `סטטוס התאמה`
-	- `איש קשר תואם`
-	- `ציון התאמה`
-	- `סיבת התאמה`
+- Every sheet that should be processed contains a column named שם (or שם מלא / שם מוזמן).
 
 ## Local Setup
 

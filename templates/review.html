@@ -8,7 +8,7 @@
     <span class="dot"></span>
     <span><strong>{{ contact_file_count }}</strong> {% if contact_file_count == 1 %}קובץ אנשי קשר{% else %}קובצי אנשי קשר{% endif %}</span>
     <span class="spacer"></span>
-    <a class="meta-link" href="{{ url_for('download') }}">הורדת הקובץ</a>
+    <a class="meta-link" href="{{ url_for('download') }}" style="font-weight: bold; color: var(--emerald-deep);">↓ הורדת קובץ אקסל</a>
     <a class="meta-link" href="{{ url_for('reset') }}">↺ התחלה מחדש</a>
 </div>
 
@@ -149,6 +149,11 @@
         </table>
     </div>
 </section>
+
+<div class="form-actions" style="margin-top: 3rem;">
+    <a href="{{ url_for('download') }}" class="primary-action">↓ הורדת קובץ אקסל מעודכן</a>
+    <a href="{{ url_for('reset') }}" class="secondary-action">התחלה מחדש</a>
+</div>
 {% endblock %}
 
 {% block scripts %}

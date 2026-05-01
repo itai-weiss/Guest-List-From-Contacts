@@ -3,20 +3,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}רשימת מוזמנים · אנשי קשר{% endblock %}</title>
+    <title>{% block title %}חילוץ מספרי טלפון אוטומטי לרשימת מוזמנים{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <main class="container">
         <header class="app-hero">
             <div>
-                <div class="eyebrow">מקומי · התאמת מוזמנים</div>
-                <h1>רשימת מוזמנים<br><em>מול</em> אנשי הקשר</h1>
-                <p class="lede">משווים בין קובץ המוזמנים לבין אנשי הקשר בטלפון. המערכת מתאימה מה שאפשר, מסמנת מה שדורש בדיקה, ומחזירה קובץ אחד מסודר להורדה.</p>
+                <div class="eyebrow">עיבוד מקומי · התאמת מוזמנים</div>
+                <h1>חילוץ מספרי טלפון אוטומטי<br><em>לרשימת מוזמנים</em></h1>
+                <p class="lede">לא רוצים לבזבז את הזמן בלחפש איך קראתם בספר טלפונים למי שאתם רוצים להזמין לחתונה? מחפשים דרך אוטומטית להוסיף לאקסל המוזמנים שלכם את מספרי הטלפון? הכנו לכם כלי פשוט וחכם שיחסוך לכם את המאמץ.</p>
+                <p class="lede">הכלי משווה באופן אוטומטי בין קובץ המוזמנים שלכם לבין אנשי הקשר בטלפון. הוא ימצא כמה שיותר התאמות, יציג לכם מה שנותר לבדיקה מהירה, ויפיק קובץ מסודר ומוכן להורדה.</p>
             </div>
             <div class="colophon">
-                <span><strong>מקומי תחילה</strong></span>
-                <span>בלי העלאה, בלי ענן</span>
+                <span><strong>עובד מקומית במחשב</strong></span>
+                <span>ללא העלאה לענן</span>
                 <span>עברית · <span class="ltr-text">vCard</span> · <span class="ltr-text">Excel</span></span>
             </div>
         </header>
@@ -24,9 +25,15 @@
         {% block content %}{% endblock %}
 
         <footer class="app-footer">
-            <span>מקומי בלבד · פועל על המחשב שלך</span>
-            <span class="ornament">✦  ·  ✦</span>
-            <span><span class="ltr-text">Flask · rapidfuzz · openpyxl</span></span>
+            <div class="credits">
+                <strong>פותח באהבה ע"י איתי וצופיה וייס, 2026</strong>
+                השתמשתם ונהניתם? מוזמנים באהבה להפיץ את הכלי לחברים!<br>
+                <span>להערות ותגובות: <span class="ltr-text">weisshome2026@gmail.com</span></span>
+            </div>
+            <div>
+                <span class="ornament">✦  ·  ✦</span>
+                <span style="margin-right: 0.5rem;">עיבוד מקומי בלבד · <span class="ltr-text">Flask · rapidfuzz · openpyxl</span></span>
+            </div>
         </footer>
     </main>
 
