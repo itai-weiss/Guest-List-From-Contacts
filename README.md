@@ -17,6 +17,19 @@ Local app for filling guest phone numbers into a wedding guest workbook from a p
 - Show ambiguous rows for manual review in the app.
 - Download a new workbook with appended result columns and a summary sheet.
 
+## Screenshots & Example Data
+
+Have a look at the provided synthetic data inside the `example/` directory. You can test the application locally using `example/example_guests.xlsx` and `example/example_contacts.vcf`.
+
+**Landing Page**
+![Landing Page](example/screenshot_landing.png)
+
+**Uploaded Files**
+![Uploaded Files](example/screenshot_upload.png)
+
+**Review Screen**
+![Review Screen](example/screenshot_review.png)
+
 ## Requirements
 
 - Windows 10 or Windows 11 for the packaged `.exe` workflow.
