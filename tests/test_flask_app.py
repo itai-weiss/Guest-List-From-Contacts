@@ -65,9 +65,10 @@ def test_flask_upload_review_resolve_and_download_flow() -> None:
 
     assert upload_response.status_code == 200
     page = upload_response.get_data(as_text=True)
-    assert "Choose the right contact" in page
-    assert "Needs review" in page
-    assert "Download workbook" in page
+    assert 'dir="rtl"' in page
+    assert "בחירת איש הקשר הנכון" in page
+    assert "דורשים בדיקה" in page
+    assert "הורדת הקובץ" in page
     assert "review-" in page
 
     marker = 'name="choice_key" value="'
@@ -81,9 +82,9 @@ def test_flask_upload_review_resolve_and_download_flow() -> None:
 
     assert resolve_response.status_code == 200
     resolved_page = resolve_response.get_data(as_text=True)
-    assert "Resolved" in resolved_page
+    assert "נפתר" in resolved_page
     assert '<div class="metric-value">1</div>' in resolved_page
-    assert "manual-review" in resolved_page
+    assert "הוכרע ידנית" in resolved_page
 
     download_response = client.get("/download")
 
@@ -127,7 +128,7 @@ def test_upload_failure_hides_internal_parser_errors() -> None:
 
     assert response.status_code == 400
     page = response.get_data(as_text=True)
-    assert "Could not process the uploaded files." in page
+    assert "לא הצלחנו לעבד את הקבצים שהועלו." in page
     assert "File is not a zip file" not in page
 
 

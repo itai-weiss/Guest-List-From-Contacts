@@ -2,33 +2,33 @@
 
 {% block content %}
 <div class="source-meta">
-    <span><strong>{{ guest_count }}</strong> guest rows</span>
+    <span><strong>{{ guest_count }}</strong> שורות מוזמנים</span>
     <span class="dot"></span>
-    <span><strong>{{ contact_count }}</strong> contacts parsed</span>
+    <span><strong>{{ contact_count }}</strong> אנשי קשר פוענחו</span>
     <span class="dot"></span>
-    <span><strong>{{ contact_file_count }}</strong> contact file{% if contact_file_count != 1 %}s{% endif %}</span>
+    <span><strong>{{ contact_file_count }}</strong> {% if contact_file_count == 1 %}קובץ אנשי קשר{% else %}קובצי אנשי קשר{% endif %}</span>
     <span class="spacer"></span>
-    <a class="meta-link" href="{{ url_for('download') }}">Download workbook</a>
-    <a class="meta-link" href="{{ url_for('reset') }}">↺ Start over</a>
+    <a class="meta-link" href="{{ url_for('download') }}">הורדת הקובץ</a>
+    <a class="meta-link" href="{{ url_for('reset') }}">↺ התחלה מחדש</a>
 </div>
 
 <section>
     <div class="section-label">
-        <span class="num">{{ nums.tally }} · Tally</span>
-        <span class="title">The standing</span>
+        <span class="num"><bdi dir="ltr">{{ nums.tally }}</bdi> · מצב כללי</span>
+        <span class="title">תמונת מצב</span>
         <span class="rule"></span>
     </div>
     <div class="metric-grid">
         <div class="metric metric--matched">
-            <div class="metric-label">Matched</div>
+            <div class="metric-label">הותאמו</div>
             <div class="metric-value">{{ metrics.matched }}</div>
         </div>
         <div class="metric metric--review">
-            <div class="metric-label">Needs review</div>
+            <div class="metric-label">דורשים בדיקה</div>
             <div class="metric-value">{{ metrics.review }}</div>
         </div>
         <div class="metric metric--unmatched">
-            <div class="metric-label">Unmatched</div>
+            <div class="metric-label">ללא התאמה</div>
             <div class="metric-value">{{ metrics.unmatched }}</div>
         </div>
     </div>
@@ -37,14 +37,14 @@
 {% if review_items %}
 <section>
     <div class="section-label">
-        <span class="num">{{ nums.review }} · Review</span>
-        <span class="title">Choose the right contact</span>
+        <span class="num"><bdi dir="ltr">{{ nums.review }}</bdi> · בחירה ידנית</span>
+        <span class="title">בחירת איש הקשר הנכון</span>
         <span class="rule"></span>
     </div>
 
     <div class="status-legend">
-        <span class="pill"><span class="swatch review"></span>{{ review_items|length }} pending cards</span>
-        <span class="pill"><span class="swatch matched"></span>{{ resolved_count }} resolved in this session</span>
+        <span class="pill"><span class="swatch review"></span>{{ review_items|length }} כרטיסים פתוחים</span>
+        <span class="pill"><span class="swatch matched"></span>{{ resolved_count }} נפתרו בסבב הזה</span>
     </div>
 
     <div class="review-stack">
@@ -55,18 +55,18 @@
                     <div class="review-meta">
                         <span>{{ item.sheet }}</span>
                         <span class="sep"></span>
-                        <span>Row {{ item.row_index }}</span>
+                        <span>שורה {{ item.row_index }}</span>
                         <span class="sep"></span>
-                        <span>{{ item.candidate_count }} candidate{% if item.candidate_count != 1 %}s{% endif %}</span>
+                        <span>{{ item.candidate_count }} {% if item.candidate_count == 1 %}מועמד{% else %}מועמדים{% endif %}</span>
                     </div>
                     <h3 class="guest-name">{{ item.guest_name }}</h3>
                 </div>
                 <div class="review-confidence">
                     {% if item.resolved %}
-                    Resolved
+                    נפתר
                     {% else %}
                     {{ item.top_score }}
-                    <small>top score</small>
+                    <small>ציון מוביל</small>
                     {% endif %}
                 </div>
             </div>
@@ -78,8 +78,7 @@
                         <label>
                             <input type="radio" name="candidate" value="0" {% if item.selected_index==0 %}checked{%
                                 endif %}>
-                            <span class="review-option__label review-option__label--skip">Leave this row unresolved for
-                                now</span>
+                            <span class="review-option__label review-option__label--skip">להשאיר את השורה הזו ללא הכרעה כרגע</span>
                         </label>
                     </li>
                     {% for candidate in item.candidates %}
@@ -105,28 +104,28 @@
 
 <section>
     <div class="section-label">
-        <span class="num">{{ nums.ledger }} · Ledger</span>
-        <span class="title">Every row, in order</span>
+        <span class="num"><bdi dir="ltr">{{ nums.ledger }}</bdi> · טבלה מלאה</span>
+        <span class="title">כל השורות לפי הסדר</span>
         <span class="rule"></span>
     </div>
 
     <div class="status-legend">
-        <span class="pill"><span class="swatch matched"></span>Matched</span>
-        <span class="pill"><span class="swatch review"></span>Needs review</span>
-        <span class="pill"><span class="swatch unmatched"></span>Unmatched</span>
+        <span class="pill"><span class="swatch matched"></span>הותאמו</span>
+        <span class="pill"><span class="swatch review"></span>דורשים בדיקה</span>
+        <span class="pill"><span class="swatch unmatched"></span>ללא התאמה</span>
     </div>
 
     <div class="ledger">
         <table>
             <thead>
                 <tr>
-                    <th>Sheet</th>
-                    <th>Guest</th>
-                    <th>Status</th>
-                    <th>Contact</th>
-                    <th>Phone</th>
-                    <th class="col-confidence">Score</th>
-                    <th>Reason</th>
+                    <th>גיליון</th>
+                    <th>מוזמן/ת</th>
+                    <th>סטטוס</th>
+                    <th>איש קשר</th>
+                    <th>טלפון</th>
+                    <th class="col-confidence">ציון</th>
+                    <th>סיבה</th>
                 </tr>
             </thead>
             <tbody>
@@ -134,7 +133,7 @@
                 <tr>
                     <td>{{ r.guest.sheet_name }}</td>
                     <td class="col-name">{{ r.guest.raw_name }}</td>
-                    <td class="col-status status-{{ r.status }}">{{ r.status }}</td>
+                    <td class="col-status status-{{ r.status }}">{{ status_labels[r.status] }}</td>
                     <td class="col-contact">
                         {% if r.matched_contact %}{{ r.matched_contact.full_name }}{% else %}<span
                             class="muted">—</span>{% endif %}
@@ -143,7 +142,7 @@
                         {% if r.phone_number %}{{ r.phone_number }}{% else %}<span class="muted">—</span>{% endif %}
                     </td>
                     <td class="col-confidence">{{ "%.1f"|format(r.confidence) }}</td>
-                    <td class="col-reason">{{ r.reason }}</td>
+                    <td class="col-reason">{{ reason_label(r.reason) }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

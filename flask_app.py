@@ -26,9 +26,21 @@ LOGGER = logging.getLogger("guest_list_from_contacts.web")
 DEFAULT_MAX_CONTENT_LENGTH = 50 * 1024 * 1024
 DEFAULT_SESSION_TTL_SECONDS = 2 * 60 * 60
 DEFAULT_SESSION_CLEANUP_INTERVAL_SECONDS = 5 * 60
+STATUS_LABELS = {
+    "matched": "הותאם",
+    "review": "לבדיקה",
+    "unmatched": "לא הותאם",
+}
+REASON_LABELS = {
+    "exact": "התאמה מלאה",
+    "exact-single-phone": "התאמה מלאה עם טלפון יחיד",
+    "multiple exact matches": "כמה התאמות מלאות",
+    "manual-review": "הוכרע ידנית",
+    "no candidates": "לא נמצאו מועמדים",
+}
 UPLOAD_ERROR_MESSAGE = (
-    "Could not process the uploaded files. Check that the workbook is a valid "
-    ".xlsx file and the contacts are valid .vcf exports."
+    "לא הצלחנו לעבד את הקבצים שהועלו. ודאו שקובץ המוזמנים הוא קובץ .xlsx תקין "
+    "ושקובצי אנשי הקשר הם ייצואי .vcf תקינים."
 )
 
 
@@ -47,6 +59,24 @@ class SessionState:
 
 SESSIONS: dict[str, SessionState] = {}
 COOKIE_NAME = "gid"
+
+
+def localize_reason(reason: str) -> str:
+    if reason in REASON_LABELS:
+        return REASON_LABELS[reason]
+
+    single_phone_suffix = "-single-phone"
+    uses_single_phone = reason.endswith(single_phone_suffix)
+    base_reason = reason[: -len(single_phone_suffix)] if uses_single_phone else reason
+
+    if base_reason.startswith("fuzzy:"):
+        fuzzy_key = base_reason.split(":", 1)[1]
+        label = f"דמיון לשם: {fuzzy_key}"
+        if uses_single_phone:
+            return f"{label} · טלפון יחיד"
+        return label
+
+    return reason
 
 
 def cleanup_expired_sessions(
@@ -126,7 +156,7 @@ def build_review_items(
                         "phone": (
                             c.contact.preferred_phone.normalized_value
                             if c.contact.preferred_phone
-                            else "no phone"
+                            else "ללא טלפון"
                         ),
                         "score": f"{c.score:.1f}",
                     }
@@ -213,7 +243,7 @@ def create_app(config: dict[str, Any] | None = None) -> Flask:
         return (
             render_template(
                 "index.html",
-                error=f"Uploads are limited to {limit_mb} MB per request.",
+                error=f"העלאה מוגבלת ל-{limit_mb} MB לבקשה.",
             ),
             413,
         )
@@ -229,9 +259,9 @@ def create_app(config: dict[str, Any] | None = None) -> Flask:
         _run_session_cleanup()
 
         if not workbook_file or not workbook_file.filename:
-            return render_template("index.html", error="Pick a guest workbook (.xlsx)."), 400
+            return render_template("index.html", error="בחרו קובץ מוזמנים (.xlsx)."), 400
         if not contacts_files:
-            return render_template("index.html", error="Pick at least one contacts export (.vcf)."), 400
+            return render_template("index.html", error="בחרו לפחות קובץ אנשי קשר אחד (.vcf)."), 400
 
         try:
             workbook, guest_rows = load_guest_workbook(BytesIO(workbook_file.read()))
@@ -298,6 +328,8 @@ def create_app(config: dict[str, Any] | None = None) -> Flask:
             contact_count=len(state.contacts),
             contact_file_count=state.contact_file_count,
             nums=nums,
+            status_labels=STATUS_LABELS,
+            reason_label=localize_reason,
         )
 
     @app.post("/resolve")

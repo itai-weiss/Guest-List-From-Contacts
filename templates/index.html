@@ -3,14 +3,14 @@
 {% block content %}
 <section>
     <div class="section-label">
-        <span class="num">I · Sources</span>
-        <span class="title">Bring your files</span>
+        <span class="num"><bdi dir="ltr">I</bdi> · קבצים</span>
+        <span class="title">מעלים את הקבצים</span>
         <span class="rule"></span>
     </div>
 
     {% if error %}
     <div class="alert" role="alert">
-        <span class="alert-tag">Error</span>
+        <span class="alert-tag">שגיאה</span>
         <span>{{ error }}</span>
     </div>
     {% endif %}
@@ -18,30 +18,61 @@
     <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data" class="upload-form">
         <div class="upload-grid">
             <div>
-                <div class="upload-tag"><span class="num">01</span><span class="dot"></span>Guest workbook · .xlsx</div>
+                <div class="upload-tag"><span class="num"><bdi dir="ltr">01</bdi></span><span class="dot"></span>קובץ מוזמנים · <span class="ltr-text">.xlsx</span></div>
                 <label class="file-zone" for="workbook-input">
                     <input type="file" id="workbook-input" name="workbook" accept=".xlsx" required>
-                    <span class="file-button">Choose file</span>
-                    <span class="file-meta is-empty" data-empty="No file chosen">No file chosen</span>
+                    <span class="file-button">בחירת קובץ</span>
+                    <span class="file-meta is-empty" data-empty="לא נבחר קובץ">לא נבחר קובץ</span>
                 </label>
             </div>
             <div>
-                <div class="upload-tag"><span class="num">02</span><span class="dot"></span>Contacts export · .vcf</div>
+                <div class="upload-tag"><span class="num"><bdi dir="ltr">02</bdi></span><span class="dot"></span>ייצוא אנשי קשר · <span class="ltr-text">.vcf</span></div>
                 <label class="file-zone" for="contacts-input">
                     <input type="file" id="contacts-input" name="contacts" accept=".vcf" multiple required>
-                    <span class="file-button">Choose files</span>
-                    <span class="file-meta is-empty" data-empty="No files chosen">No files chosen</span>
+                    <span class="file-button">בחירת קבצים</span>
+                    <span class="file-meta is-empty" data-empty="לא נבחרו קבצים">לא נבחרו קבצים</span>
                 </label>
             </div>
         </div>
 
+        <details class="vcf-guide" open>
+            <summary>מדריך קצר: איך מוציאים קובץ <span class="ltr-text">VCF</span>?</summary>
+            <div class="vcf-guide__body">
+                <p class="vcf-guide__lede">אפשר להעלות קובץ אחד או כמה קובצי <span class="ltr-text">.vcf</span>. אם אנשי הקשר מפוצלים בין חשבונות או מכשירים, פשוט מייצאים יותר מקובץ אחד ומעלים את כולם.</p>
+
+                <div class="vcf-guide__grid">
+                    <article class="vcf-card">
+                        <div class="vcf-card__platform"><span class="ltr-text">Android</span></div>
+                        <h3>אנדרואיד</h3>
+                        <ol>
+                            <li>פותחים את אפליקציית אנשי הקשר במכשיר.</li>
+                            <li>מחפשים <span class="ltr-text">Export</span>, ייצוא, או ניהול אנשי קשר.</li>
+                            <li>שומרים קובץ <span class="ltr-text">.vcf</span> ושולחים אותו למחשב.</li>
+                        </ol>
+                        <p>אם לא רואים אפשרות ייצוא במכשיר, אפשר להיכנס ל-<span class="ltr-text">contacts.google.com</span> ולייצא משם.</p>
+                    </article>
+
+                    <article class="vcf-card">
+                        <div class="vcf-card__platform"><span class="ltr-text">iPhone</span></div>
+                        <h3>אייפון</h3>
+                        <ol>
+                            <li>מוודאים שאנשי הקשר מסונכרנים ל-<span class="ltr-text">iCloud</span>.</li>
+                            <li>נכנסים במחשב ל-<span class="ltr-text">icloud.com/contacts</span>.</li>
+                            <li>בוחרים את אנשי הקשר ומייצאים <span class="ltr-text">Export vCard</span>.</li>
+                        </ol>
+                        <p>אם צריך, אפשר לייצא בכמה קבצים ולהעלות יותר מקובץ <span class="ltr-text">.vcf</span> אחד.</p>
+                    </article>
+                </div>
+            </div>
+        </details>
+
         <div class="empty-state">
             <div class="mark">✦  ·  ✦</div>
-            <p>Pick an invitation workbook and at least one <code>.vcf</code> contacts export above, then run the matcher.</p>
+            <p>בחרו קובץ מוזמנים ולפחות קובץ אנשי קשר אחד בפורמט <code class="ltr-text">.vcf</code>, ואז הפעילו את ההתאמה.</p>
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="primary-action">Run matcher  →</button>
+            <button type="submit" class="primary-action">הפעלת התאמה</button>
         </div>
     </form>
 </section>

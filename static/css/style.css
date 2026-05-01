@@ -51,6 +51,12 @@ a {
 
 button { font-family: inherit; }
 
+.ltr-text {
+    direction: ltr;
+    unicode-bidi: isolate;
+    display: inline-block;
+}
+
 /* ============= Hero ============= */
 
 .app-hero {
@@ -285,6 +291,114 @@ button { font-family: inherit; }
     content: "  ·  ";
     color: var(--rule);
     margin-right: 0.4em;
+}
+
+/* ============= VCF guide ============= */
+
+.vcf-guide {
+    margin-top: 1.5rem;
+    background: var(--paper-soft);
+    border: 1px solid var(--rule);
+}
+
+.vcf-guide summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--emerald-deep);
+    font-weight: 500;
+}
+
+.vcf-guide summary::-webkit-details-marker {
+    display: none;
+}
+
+.vcf-guide summary::after {
+    content: "▾";
+    color: var(--ink-muted);
+    font-size: 0.9rem;
+    line-height: 1;
+    transition: transform 180ms ease;
+}
+
+.vcf-guide[open] summary::after {
+    transform: rotate(180deg);
+}
+
+.vcf-guide__body {
+    border-top: 1px solid var(--rule-soft);
+    padding: 1rem 1.25rem 1.25rem;
+}
+
+.vcf-guide__lede {
+    margin: 0 0 1.1rem;
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 24;
+    color: var(--ink-soft);
+    line-height: 1.55;
+}
+
+.vcf-guide__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.vcf-card {
+    background: var(--paper);
+    border: 1px solid var(--rule-soft);
+    padding: 1rem 1rem 1.1rem;
+}
+
+.vcf-card__platform {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.64rem;
+    letter-spacing: 0.14em;
+    color: var(--emerald);
+    margin-bottom: 0.45rem;
+    text-transform: uppercase;
+}
+
+.vcf-card h3 {
+    margin: 0 0 0.8rem;
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 48;
+    font-size: 1.25rem;
+    font-weight: 420;
+    color: var(--ink);
+}
+
+.vcf-card ol {
+    margin: 0;
+    padding: 0 1.25rem 0 0;
+    display: grid;
+    gap: 0.45rem;
+    color: var(--ink-soft);
+}
+
+.vcf-card li {
+    line-height: 1.55;
+}
+
+.vcf-card p {
+    margin: 0.9rem 0 0;
+    color: var(--ink-muted);
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+    .vcf-guide__grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ============= Empty state ============= */
@@ -839,4 +953,116 @@ button { font-family: inherit; }
 .app-footer .ornament {
     color: var(--emerald);
     letter-spacing: 0.4em;
+}
+
+/* ============= RTL adjustments ============= */
+
+[dir="rtl"] body {
+    direction: rtl;
+}
+
+[dir="rtl"] .app-hero {
+    text-align: right;
+}
+
+[dir="rtl"] .app-hero .eyebrow {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+[dir="rtl"] .app-hero .colophon {
+    text-align: left;
+    border-left: none;
+    border-right: 1px solid var(--rule);
+    padding-left: 0;
+    padding-right: 1.5rem;
+}
+
+[dir="rtl"] .alert {
+    border-left: 1px solid var(--rule);
+    border-right: 3px solid var(--emerald);
+}
+
+[dir="rtl"] .source-meta strong {
+    margin-right: 0;
+    margin-left: 0.4em;
+}
+
+[dir="rtl"] .metric::before {
+    left: auto;
+    right: 0;
+}
+
+[dir="rtl"] .ledger thead th {
+    text-align: right;
+}
+
+[dir="rtl"] .review-card {
+    border-left: 1px solid var(--rule);
+    border-right: 3px solid var(--brass);
+}
+
+[dir="rtl"] .review-card.is-resolved {
+    border-right-color: var(--sage);
+}
+
+[dir="rtl"] .review-card__header {
+    text-align: right;
+}
+
+[dir="rtl"] .review-option label {
+    border-left: none;
+    border-right: 3px solid transparent;
+    margin-left: 0;
+    margin-right: -3px;
+}
+
+[dir="rtl"] .review-option.is-selected label {
+    border-right-color: var(--sage);
+}
+
+[dir="rtl"] .app-hero .eyebrow,
+[dir="rtl"] .app-hero .colophon,
+[dir="rtl"] .section-label .num,
+[dir="rtl"] .upload-tag,
+[dir="rtl"] .file-button,
+[dir="rtl"] .primary-action,
+[dir="rtl"] .alert-tag,
+[dir="rtl"] .source-meta,
+[dir="rtl"] .metric .metric-label,
+[dir="rtl"] .status-legend,
+[dir="rtl"] .review-card .review-meta,
+[dir="rtl"] .review-card .review-confidence small,
+[dir="rtl"] .ledger thead th,
+[dir="rtl"] .app-footer {
+    letter-spacing: 0.08em;
+    text-transform: none;
+}
+
+[dir="rtl"] .file-meta .filename,
+[dir="rtl"] .review-option__phone,
+[dir="rtl"] .ledger .col-phone,
+[dir="rtl"] .ledger .col-confidence {
+    direction: ltr;
+    unicode-bidi: isolate;
+}
+
+[dir="rtl"] .review-option__score {
+    direction: ltr;
+    unicode-bidi: isolate;
+    text-align: left;
+}
+
+[dir="rtl"] .vcf-guide summary,
+[dir="rtl"] .vcf-card__platform {
+    letter-spacing: 0.08em;
+    text-transform: none;
+}
+
+@media (max-width: 760px) {
+    [dir="rtl"] .app-hero .colophon {
+        border-right: none;
+        padding-right: 0;
+        text-align: right;
+    }
 }
