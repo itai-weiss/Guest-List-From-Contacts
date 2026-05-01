@@ -2,6 +2,19 @@
 
 Local app for filling guest phone numbers into a wedding guest workbook from a phone contacts export.
 
+## Quick Start (For Regular Users)
+
+You do not need to install Python or write any code to use this tool! Just download the application and run it.
+
+1. Go to the **Releases** page on this GitHub repository (look for the "Releases" section on the right side of the page).
+2. Download the latest `GuestListFromContacts.exe` file.
+3. Double-click the downloaded `.exe` file to open it.
+4. Wait a few seconds — the application will automatically open a new tab in your web browser.
+5. Upload your Excel `.xlsx` workbook, and upload the contact `.vcf` exports from your phone.
+6. The app will process the list and give you an updated Excel file with phone numbers.
+
+*Note: As this is an indie local application, Windows SmartScreen may show a "Windows protected your PC" popup. If this happens, click **More info** and then **Run anyway**.*
+
 ## Product Boundary
 
 - The supported app is the Flask-based localhost desktop flow.
@@ -21,10 +34,9 @@ Local app for filling guest phone numbers into a wedding guest workbook from a p
 
 Have a look at the provided synthetic data inside the `example/` directory. You can test the application locally using `example/example_guests.xlsx` and `example/example_contacts.vcf`.
 
-**Landing Page**
-![Landing Page](example/screenshot_landing.png)
+*(The landing screen looks the same as below before selecting files)*
 
-**Uploaded Files**
+**Upload Interface**
 ![Uploaded Files](example/screenshot_upload.png)
 
 **Review Screen**
