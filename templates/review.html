@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="source-meta">
+    <span><strong>{{ guest_count }}</strong> guest rows</span>
+    <span class="dot"></span>
+    <span><strong>{{ contact_count }}</strong> contacts parsed</span>
+    <span class="dot"></span>
+    <span><strong>{{ contact_file_count }}</strong> contact file{% if contact_file_count != 1 %}s{% endif %}</span>
+    <span class="spacer"></span>
+    <a class="meta-link" href="{{ url_for('download') }}">Download workbook</a>
+    <a class="meta-link" href="{{ url_for('reset') }}">↺ Start over</a>
+</div>
+
+<section>
+    <div class="section-label">
+        <span class="num">{{ nums.tally }} · Tally</span>
+        <span class="title">The standing</span>
+        <span class="rule"></span>
+    </div>
+    <div class="metric-grid">
+        <div class="metric metric--matched">
+            <div class="metric-label">Matched</div>
+            <div class="metric-value">{{ metrics.matched }}</div>
+        </div>
+        <div class="metric metric--review">
+            <div class="metric-label">Needs review</div>
+            <div class="metric-value">{{ metrics.review }}</div>
+        </div>
+        <div class="metric metric--unmatched">
+            <div class="metric-label">Unmatched</div>
+            <div class="metric-value">{{ metrics.unmatched }}</div>
+        </div>
+    </div>
+</section>
+
+{% if review_items %}
+<section>
+    <div class="section-label">
+        <span class="num">{{ nums.review }} · Review</span>
+        <span class="title">Choose the right contact</span>
+        <span class="rule"></span>
+    </div>
+
+    <div class="status-legend">
+        <span class="pill"><span class="swatch review"></span>{{ review_items|length }} pending cards</span>
+        <span class="pill"><span class="swatch matched"></span>{{ resolved_count }} resolved in this session</span>
+    </div>
+
+    <div class="review-stack">
+        {% for item in review_items %}
+        <article id="card-{{ item.choice_key }}" class="review-card{% if item.resolved %} is-resolved{% endif %}">
+            <div class="review-card__header">
+                <div>
+                    <div class="review-meta">
+                        <span>{{ item.sheet }}</span>
+                        <span class="sep"></span>
+                        <span>Row {{ item.row_index }}</span>
+                        <span class="sep"></span>
+                        <span>{{ item.candidate_count }} candidate{% if item.candidate_count != 1 %}s{% endif %}</span>
+                    </div>
+                    <h3 class="guest-name">{{ item.guest_name }}</h3>
+                </div>
+                <div class="review-confidence">
+                    {% if item.resolved %}
+                    Resolved
+                    {% else %}
+                    {{ item.top_score }}
+                    <small>top score</small>
+                    {% endif %}
+                </div>
+            </div>
+
+            <form class="review-form" method="post" action="{{ url_for('resolve') }}">
+                <input type="hidden" name="choice_key" value="{{ item.choice_key }}">
+                <ul class="review-options">
+                    <li class="review-option{% if item.selected_index == 0 %} is-selected{% endif %}">
+                        <label>
+                            <input type="radio" name="candidate" value="0" {% if item.selected_index==0 %}checked{%
+                                endif %}>
+                            <span class="review-option__label review-option__label--skip">Leave this row unresolved for
+                                now</span>
+                        </label>
+                    </li>
+                    {% for candidate in item.candidates %}
+                    <li class="review-option{% if item.selected_index == loop.index %} is-selected{% endif %}">
+                        <label>
+                            <input type="radio" name="candidate" value="{{ loop.index }}" {% if
+                                item.selected_index==loop.index %}checked{% endif %}>
+                            <span class="review-option__label">
+                                <span class="review-option__name">{{ candidate.name }}</span>
+                                <span class="review-option__phone">{{ candidate.phone }}</span>
+                                <span class="review-option__score">{{ candidate.score }}</span>
+                            </span>
+                        </label>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </form>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<section>
+    <div class="section-label">
+        <span class="num">{{ nums.ledger }} · Ledger</span>
+        <span class="title">Every row, in order</span>
+        <span class="rule"></span>
+    </div>
+
+    <div class="status-legend">
+        <span class="pill"><span class="swatch matched"></span>Matched</span>
+        <span class="pill"><span class="swatch review"></span>Needs review</span>
+        <span class="pill"><span class="swatch unmatched"></span>Unmatched</span>
+    </div>
+
+    <div class="ledger">
+        <table>
+            <thead>
+                <tr>
+                    <th>Sheet</th>
+                    <th>Guest</th>
+                    <th>Status</th>
+                    <th>Contact</th>
+                    <th>Phone</th>
+                    <th class="col-confidence">Score</th>
+                    <th>Reason</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in results %}
+                <tr>
+                    <td>{{ r.guest.sheet_name }}</td>
+                    <td class="col-name">{{ r.guest.raw_name }}</td>
+                    <td class="col-status status-{{ r.status }}">{{ r.status }}</td>
+                    <td class="col-contact">
+                        {% if r.matched_contact %}{{ r.matched_contact.full_name }}{% else %}<span
+                            class="muted">—</span>{% endif %}
+                    </td>
+                    <td class="col-phone">
+                        {% if r.phone_number %}{{ r.phone_number }}{% else %}<span class="muted">—</span>{% endif %}
+                    </td>
+                    <td class="col-confidence">{{ "%.1f"|format(r.confidence) }}</td>
+                    <td class="col-reason">{{ r.reason }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.querySelectorAll('.review-form input[type="radio"]').forEach((input) => {
+        input.addEventListener('change', () => {
+            input.form?.requestSubmit();
+        });
+    });
+</script>
+{% endblock %}

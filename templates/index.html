@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+    <div class="section-label">
+        <span class="num">I · Sources</span>
+        <span class="title">Bring your files</span>
+        <span class="rule"></span>
+    </div>
+
+    {% if error %}
+    <div class="alert" role="alert">
+        <span class="alert-tag">Error</span>
+        <span>{{ error }}</span>
+    </div>
+    {% endif %}
+
+    <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data" class="upload-form">
+        <div class="upload-grid">
+            <div>
+                <div class="upload-tag"><span class="num">01</span><span class="dot"></span>Guest workbook · .xlsx</div>
+                <label class="file-zone" for="workbook-input">
+                    <input type="file" id="workbook-input" name="workbook" accept=".xlsx" required>
+                    <span class="file-button">Choose file</span>
+                    <span class="file-meta is-empty" data-empty="No file chosen">No file chosen</span>
+                </label>
+            </div>
+            <div>
+                <div class="upload-tag"><span class="num">02</span><span class="dot"></span>Contacts export · .vcf</div>
+                <label class="file-zone" for="contacts-input">
+                    <input type="file" id="contacts-input" name="contacts" accept=".vcf" multiple required>
+                    <span class="file-button">Choose files</span>
+                    <span class="file-meta is-empty" data-empty="No files chosen">No files chosen</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="empty-state">
+            <div class="mark">✦  ·  ✦</div>
+            <p>Pick an invitation workbook and at least one <code>.vcf</code> contacts export above, then run the matcher.</p>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="primary-action">Run matcher  →</button>
+        </div>
+    </form>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.querySelectorAll('.file-zone input[type=file]').forEach((input) => {
+        const zone = input.closest('.file-zone');
+        const meta = zone.querySelector('.file-meta');
+
+        input.addEventListener('change', () => {
+            const files = Array.from(input.files);
+            if (!files.length) {
+                meta.textContent = meta.dataset.empty;
+                meta.classList.add('is-empty');
+                return;
+            }
+            meta.classList.remove('is-empty');
+            meta.innerHTML = files
+                .map(f => `<span class="filename"></span>`)
+                .join('');
+            const spans = meta.querySelectorAll('.filename');
+            files.forEach((f, i) => { spans[i].textContent = f.name; });
+        });
+
+        ['dragenter', 'dragover'].forEach(evt => {
+            zone.addEventListener(evt, (e) => {
+                e.preventDefault();
+                zone.classList.add('is-dragover');
+            });
+        });
+        ['dragleave', 'drop'].forEach(evt => {
+            zone.addEventListener(evt, (e) => {
+                e.preventDefault();
+                zone.classList.remove('is-dragover');
+            });
+        });
+        zone.addEventListener('drop', (e) => {
+            if (!e.dataTransfer || !e.dataTransfer.files.length) return;
+            input.files = e.dataTransfer.files;
+            input.dispatchEvent(new Event('change'));
+        });
+    });
+</script>
+{% endblock %}

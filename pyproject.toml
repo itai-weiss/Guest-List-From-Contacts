@@ -1,0 +1,30 @@
+[project]
+name = "guest-list-from-contacts"
+version = "0.1.0"
+description = "Local tool for matching guest workbook names to contact phone numbers"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "flask>=3.0",
+    "openpyxl>=3.1.5",
+    "rapidfuzz>=3.13.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pyinstaller>=6.14.0",
+    "pytest>=8.3.5",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

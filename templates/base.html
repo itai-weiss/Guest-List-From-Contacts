@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Guest List · From Contacts{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main class="container">
+        <header class="app-hero">
+            <div>
+                <div class="eyebrow">Atelier · Guest Reconciliation</div>
+                <h1>Guest list<br><em>from</em> contacts</h1>
+                <p class="lede">Cross-reference an invitation workbook against your phone contacts. The matcher resolves what it can, surfaces what it can&rsquo;t, and hands back a single, finished file.</p>
+            </div>
+            <div class="colophon">
+                <span><strong>Local-first</strong></span>
+                <span>No upload, no cloud</span>
+                <span>Hebrew · vCard · Excel</span>
+            </div>
+        </header>
+
+        {% block content %}{% endblock %}
+
+        <footer class="app-footer">
+            <span>Local-only · runs on your machine</span>
+            <span class="ornament">✦  ·  ✦</span>
+            <span>Flask · rapidfuzz · openpyxl</span>
+        </footer>
+    </main>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>
