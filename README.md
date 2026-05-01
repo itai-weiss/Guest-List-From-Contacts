@@ -30,6 +30,9 @@ Have a look at the provided synthetic data inside the `example/` directory. You 
 **Review Screen**
 ![Review Screen](example/screenshot_review.png)
 
+**Manual Match Selection**
+![Manual Selection](example/screenshot_manual_review.png)
+
 ## Requirements
 
 - Windows 10 or Windows 11 for the packaged `.exe` workflow.
